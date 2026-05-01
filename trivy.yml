@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: trivy-scan
+  namespace: bankapp
+spec:
+  template:
+    spec:
+      containers:
+        - name: trivy
+          image: aquasec/trivy
+          command: ["trivy"]
+          args: ["image", "manmeeetkaur/ai-bankapp:k8s"]
+      restartPolicy: Never
